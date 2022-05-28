@@ -1,0 +1,32 @@
+buildscript {
+    apply from: "$rootDir/versions.gradle"
+    repositories {
+        google()
+        maven { url 'https://jitpack.io' }
+        mavenCentral()
+        //noinspection JcenterRepositoryObsolete
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        //noinspection JcenterRepositoryObsolete
+        jcenter()
+        mavenCentral()
+        mavenLocal()
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

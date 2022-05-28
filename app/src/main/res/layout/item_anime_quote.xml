@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="quote"
+            type="com.nedaluof.entities.apiresponse.anime.Quote" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_4sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:background="@color/indigo_light" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_6sdp"
+                    android:text="@{quote.quote}"
+                    android:textColor="@color/indigo"
+                    android:textSize="@dimen/_20ssp"
+                    tools:text="@string/app_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/character_lyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/character"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@{quote.character}"
+                    android:textAlignment="textEnd"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:textColor="@color/indigo_light"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="italic"
+                    tools:text="@string/app_name"
+                    tools:ignore="RtlSymmetry" />
+
+                <View
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:background="@color/indigo_light" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

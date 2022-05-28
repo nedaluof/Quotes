@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.nedaluof.quotes.ui.anime.AnimeViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.anime.AnimeFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/anime_name_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            app:items="@{viewmodel.animeNames}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_anime_name" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            style="@style/SpinKitView.Wave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewmodel.loading?View.VISIBLE:View.GONE}"
+            app:SpinKit_Color="@color/indigo_light" />
+    </RelativeLayout>
+</layout>

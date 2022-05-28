@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Quotes</string>
+    <string name="nedaluOf">By NedaluOf @8K-Developers Apps</string>
+    <string name="title_anime">Anime</string>
+    <string name="title_insp">Inspirational</string>
+    <string name="title_motivational">Motivational</string>
+    <string name="title_anime_quotes">Anime Quotes</string>
+    <string name="title_character_quotes">Character Quotes</string>
+    <string name="alert_please_wait">Please Wait</string>
+
+    <!--Anime-->
+    <string name="tap_label">Tap to see anime Quotes</string>
+    <string name="retry_label">Try Again</string>
+    <string name="no_label">Something Went Wrong</string>
+
+</resources>

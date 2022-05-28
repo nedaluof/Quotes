@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: "../versions.gradle"
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        applicationId "com.nedaluof.quotes"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    kapt { correctErrorTypes = true }
+
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+    //domain
+    api project(":domain")
+    api project(":data")
+    //app compatibility
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    //MDC
+    implementation "com.google.android.material:material:$versions.material"
+    //constraint layout
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+    //RecyclerView
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
+    //shimmer effect
+    implementation "com.facebook.shimmer:shimmer:$versions.shimmer"
+    //circle image view
+    implementation "com.mikhaellopez:circularimageview:$versions.circleImageView"
+    //bouncy nested scroll view
+    implementation 'com.factor:bouncy:1.8'
+    //view pager 2
+    implementation "androidx.viewpager2:viewpager2:$versions.viewPager"
+    //spin kit {progress material}
+    implementation "com.github.ybq:Android-SpinKit:$versions.spinKit"
+    //coil image loader
+    implementation "io.coil-kt:coil:$versions.coil"
+    //design dimensions helper
+    implementation "com.intuit.sdp:sdp-android:$versions.intuit"
+    implementation "com.intuit.ssp:ssp-android:$versions.intuit"
+    //extensions
+    implementation "androidx.fragment:fragment-ktx:$versions.fragmentKtx"
+    implementation "androidx.core:core-ktx:$versions.coreKtx"
+    //Toasty
+    implementation "com.github.GrenderG:Toasty:$versions.toasty"
+    // jet-pack Components
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle"
+    // Hilt dependencies injection
+    implementation "com.google.dagger:hilt-android:$versions.hilt"
+    kapt "com.google.dagger:hilt-android-compiler:$versions.hilt"
+    //kotlin reflect
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.reflect"
+    //java 8+ support
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$versions.java8"
+    //testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
