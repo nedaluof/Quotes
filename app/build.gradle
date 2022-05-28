@@ -35,15 +35,12 @@ android {
     }
     kapt { correctErrorTypes = true }
 
-    buildFeatures {
-        dataBinding = true
-    }
+    buildFeatures.dataBinding = true
 }
 
 dependencies {
     //domain
     api project(":domain")
-    api project(":data")
     //app compatibility
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
     //MDC
@@ -54,24 +51,15 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
     //shimmer effect
     implementation "com.facebook.shimmer:shimmer:$versions.shimmer"
-    //circle image view
-    implementation "com.mikhaellopez:circularimageview:$versions.circleImageView"
     //bouncy nested scroll view
     implementation 'com.factor:bouncy:1.8'
-    //view pager 2
-    implementation "androidx.viewpager2:viewpager2:$versions.viewPager"
-    //spin kit {progress material}
+    //spin kit
     implementation "com.github.ybq:Android-SpinKit:$versions.spinKit"
-    //coil image loader
-    implementation "io.coil-kt:coil:$versions.coil"
     //design dimensions helper
     implementation "com.intuit.sdp:sdp-android:$versions.intuit"
     implementation "com.intuit.ssp:ssp-android:$versions.intuit"
     //extensions
     implementation "androidx.fragment:fragment-ktx:$versions.fragmentKtx"
-    implementation "androidx.core:core-ktx:$versions.coreKtx"
-    //Toasty
-    implementation "com.github.GrenderG:Toasty:$versions.toasty"
     // jet-pack Components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"

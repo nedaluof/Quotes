@@ -33,23 +33,21 @@ android {
 
 dependencies {
     //Extensions
-    implementation "androidx.core:core-ktx:$versions.coreKtx"
+    api "androidx.core:core-ktx:$versions.coreKtx"
     //Preferences
-    implementation "androidx.preference:preference-ktx:$versions.preference"
     implementation 'com.github.nedaluof:MiHawk:1.0.1'
     // Hilt dependencies injection
     implementation "com.google.dagger:hilt-android:$versions.hilt"
     kapt "com.google.dagger:hilt-android-compiler:$versions.hilt"
-    //GSON
-    implementation "com.google.code.gson:gson:$versions.gson"
-    //Network Layer
-    api("com.squareup.retrofit2:retrofit:$versions.retrofit") { exclude module: 'okhttp' }
-    api "com.squareup.retrofit2:converter-gson:$versions.converter"
+    //remote
+    api ("com.squareup.retrofit2:retrofit:$versions.retrofit") { exclude module: 'okhttp' }
+    api "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
     api "com.squareup.okhttp3:logging-interceptor:$versions.interceptor"
+    //moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshi"
     //Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
-    //Annotations
-    implementation "androidx.annotation:annotation:$versions.annotations"
     // Debugging
     api "com.jakewharton.timber:timber:$versions.timber"
     //Testing
