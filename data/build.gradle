@@ -14,6 +14,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
         buildConfigField "String", "BASE_URL", "\"https://api.quotable.io/\""
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -35,7 +36,7 @@ dependencies {
     //Extensions
     api "androidx.core:core-ktx:$versions.coreKtx"
     //Preferences
-    implementation 'com.github.nedaluof:MiHawk:1.0.1'
+    //api 'com.github.nedaluof:MiHawk:1.0.1'
     // Hilt dependencies injection
     implementation "com.google.dagger:hilt-android:$versions.hilt"
     kapt "com.google.dagger:hilt-android-compiler:$versions.hilt"

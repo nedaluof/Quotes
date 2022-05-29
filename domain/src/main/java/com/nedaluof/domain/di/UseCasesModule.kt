@@ -8,6 +8,8 @@ import com.nedaluof.domain.usecases.quotesbyauthor.QuotesByAuthorUseCase
 import com.nedaluof.domain.usecases.quotesbyauthor.QuotesByAuthorUseCaseImpl
 import com.nedaluof.domain.usecases.quotesbytag.QuotesByTagUseCase
 import com.nedaluof.domain.usecases.quotesbytag.QuotesByTagUseCaseImpl
+import com.nedaluof.domain.usecases.tags.TagsUseCase
+import com.nedaluof.domain.usecases.tags.TagsUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,30 +23,37 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @Module
 abstract class UseCasesModule {
 
-    //App use case
-    @ViewModelScoped
-    @Binds
-    abstract fun bindAppUseCase(
-        useCaseImpl: AppUseCaseImpl
-    ): AppUseCase
+  //App use case
+  @ViewModelScoped
+  @Binds
+  abstract fun bindAppUseCase(
+    useCaseImpl: AppUseCaseImpl
+  ): AppUseCase
 
-    //Quotes use cases
-    @ViewModelScoped
-    @Binds
-    abstract fun bindQuotesUseCase(
-        useCaseImpl: QuotesUseCaseImpl
-    ): QuotesUseCase
+  //Tags use cases
+  @ViewModelScoped
+  @Binds
+  abstract fun bindTagsUseCase(
+    useCaseImpl: TagsUseCaseImpl
+  ): TagsUseCase
 
-    @ViewModelScoped
-    @Binds
-    abstract fun bindQuotesByTagUseCase(
-        useCaseImpl: QuotesByTagUseCaseImpl
-    ): QuotesByTagUseCase
+  //Quotes use cases
+  @ViewModelScoped
+  @Binds
+  abstract fun bindQuotesUseCase(
+    useCaseImpl: QuotesUseCaseImpl
+  ): QuotesUseCase
 
-    @ViewModelScoped
-    @Binds
-    abstract fun bindAuthorQuotesUseCase(
-        useCaseImpl: QuotesByAuthorUseCaseImpl
-    ): QuotesByAuthorUseCase
+  @ViewModelScoped
+  @Binds
+  abstract fun bindQuotesByTagUseCase(
+    useCaseImpl: QuotesByTagUseCaseImpl
+  ): QuotesByTagUseCase
+
+  @ViewModelScoped
+  @Binds
+  abstract fun bindAuthorQuotesUseCase(
+    useCaseImpl: QuotesByAuthorUseCaseImpl
+  ): QuotesByAuthorUseCase
 
 }

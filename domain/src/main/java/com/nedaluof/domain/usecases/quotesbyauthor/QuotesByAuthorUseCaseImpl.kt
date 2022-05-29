@@ -4,8 +4,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.nedaluof.data.repository.quotes.QuotesRepository
-import com.nedaluof.domain.model.QuoteModel
-import com.nedaluof.domain.model.QuoteModelMapper
+import com.nedaluof.domain.model.quote.QuoteModel
+import com.nedaluof.domain.model.quote.QuoteModelMapper
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

@@ -1,26 +1,28 @@
 package com.nedaluof.data.datasource.remote.apiresponse
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.JsonClass
 
 /**
  * Created by NedaluOf on 8/13/2021.
  */
+@JsonClass(generateAdapter = true)
 data class GetQuotesResponse(
-    @SerializedName("count") val count: Int,
-    @SerializedName("totalCount") val totalCount: Int,
-    @SerializedName("page") val page: Int,
-    @SerializedName("totalPages") val totalPages: Int,
-    @SerializedName("lastItemIndex") val lastItemIndex: Int?,
-    @SerializedName("results") val results: List<Quote>
+  val count: Int,
+  val totalCount: Int,
+  val page: Int,
+  val totalPages: Int,
+  val lastItemIndex: Int?,
+  val results: List<Quote>
 )
 
-data class Quote (
-    @SerializedName("tags") val tags : List<String> = emptyList(),
-    @SerializedName("_id") val _id : String = "",
-    @SerializedName("author") val author : String= "",
-    @SerializedName("content") val content : String= "",
-    @SerializedName("authorSlug") val authorSlug : String= "",
-    @SerializedName("length") val length : Int = 0,
-    @SerializedName("dateAdded") val dateAdded : String= "",
-    @SerializedName("dateModified") val dateModified : String= ""
+@JsonClass(generateAdapter = true)
+data class Quote(
+  val tags: List<String> = emptyList(),
+  val _id: String = "",
+  val author: String = "",
+  val content: String = "",
+  val authorSlug: String = "",
+  val length: Int = 0,
+  val dateAdded: String = "",
+  val dateModified: String = ""
 )

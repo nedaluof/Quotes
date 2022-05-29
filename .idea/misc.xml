@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Quotes/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/fragment_author_quotes.xml" value="0.209375" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/fragment_character_quotes.xml" value="0.209375" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/fragment_inspirational.xml" value="0.20948410630536737" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/fragment_tag_quotes.xml" value="0.209375" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/item_inspirational_quote.xml" value="0.33" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/item_quote.xml" value="0.209375" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/item_test.xml" value="0.209375" />
+      </map>
+    </option>
+  </component>
   <component name="EntryPointsManager">
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="dagger.Binds" />

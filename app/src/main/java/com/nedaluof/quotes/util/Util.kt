@@ -11,7 +11,6 @@ import kotlin.math.floor
 /**
  * Created by NedaluOf on 8/10/2021.
  */
-
 fun BottomSheetDialogFragment.initBottomSheetBehavior(stateChanged: (Int) -> Unit) {
     // expand the bottom sheet
     (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED

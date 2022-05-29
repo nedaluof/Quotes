@@ -2,8 +2,8 @@ package com.nedaluof.domain.usecases.quotesbytag
 
 import com.nedaluof.data.datasource.remote.apiresponse.GetQuotesResponse
 import com.nedaluof.data.repository.quotes.QuotesRepository
-import com.nedaluof.domain.model.QuoteModel
-import com.nedaluof.domain.model.QuoteModelMapper
+import com.nedaluof.domain.model.quote.QuoteModel
+import com.nedaluof.domain.model.quote.QuoteModelMapper
 import com.nedaluof.domain.usecases.base.BasePagingSource
 import retrofit2.Response
 

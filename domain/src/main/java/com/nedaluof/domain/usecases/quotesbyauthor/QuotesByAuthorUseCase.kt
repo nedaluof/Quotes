@@ -1,7 +1,7 @@
 package com.nedaluof.domain.usecases.quotesbyauthor
 
 import androidx.paging.PagingData
-import com.nedaluof.domain.model.QuoteModel
+import com.nedaluof.domain.model.quote.QuoteModel
 import kotlinx.coroutines.flow.Flow
 
 /**

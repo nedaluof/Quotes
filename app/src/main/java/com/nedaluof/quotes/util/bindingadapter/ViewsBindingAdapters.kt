@@ -3,25 +3,13 @@
 package com.nedaluof.quotes.util.bindingadapter
 
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import com.nedaluof.quotes.ui.base.BaseRecycler
 
 /**
  * Created by NedaluOf on 8/10/2021.
  */
 object ViewsBindingAdapters {
-    /**
-     * Used With base recycler view adapter
-     * */
-    @BindingAdapter("items")
-    @JvmStatic
-    fun <Any> addItems(recyclerView: RecyclerView?, items: List<Any>?) {
-        val adapter = recyclerView?.adapter as? BaseRecycler<Any>
-        adapter?.clearItems()
-        items?.let { adapter?.addItems(it) }
-    }
 
     /**
      * used to generate/add chips
