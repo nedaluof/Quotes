@@ -1,4 +1,4 @@
-package com.nedaluof.quotes.ui.main
+package com.nedaluof.quotes.ui.main.adapters
 
 import android.graphics.Paint
 import android.view.LayoutInflater

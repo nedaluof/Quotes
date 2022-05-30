@@ -16,9 +16,8 @@ object ViewsBindingAdapters {
      * */
     @BindingAdapter(value = ["app:tags", "app:callback"])
     @JvmStatic
-    fun generateChips(group: ChipGroup, tags: List<String>, callback: ChipsClick?) {
+    fun ChipGroup.generateChips(tags: List<String>, callback: ChipsClick?) {
         for (index in tags.indices) {
-            val context = group.context
             val tagName = tags[index]
             val chip = Chip(context)
             /* val paddingDp = TypedValue.applyDimension(
@@ -37,7 +36,7 @@ object ViewsBindingAdapters {
                  tags.remove(tagName)
                  chipGroup.removeView(chip)
              }*/
-            group.addView(chip)
+            addView(chip)
         }
     }
 }

@@ -8,10 +8,8 @@ import com.nedaluof.domain.model.util.Result
 import com.nedaluof.domain.usecases.quotes.QuotesUseCase
 import com.nedaluof.domain.usecases.quotesbytag.QuotesByTagUseCase
 import com.nedaluof.domain.usecases.tags.TagsUseCase
-import com.nedaluof.quotes.util.bindingadapter.ChipsClick
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -23,11 +21,10 @@ class QuotesViewModel @Inject constructor(
   private val tagsUseCase: TagsUseCase,
   private val quotesUseCase: QuotesUseCase,
   private val quotesByTagUseCase: QuotesByTagUseCase
-) : ViewModel(){
+) : ViewModel() {
 
-  private val _loading = MutableStateFlow(false)
-  val loading = _loading.asStateFlow()
 
+  val loading = MutableStateFlow(false)
   val tagsList = MutableStateFlow<List<TagModel>>(emptyList())
 
   private fun loadTags() {
@@ -35,17 +32,23 @@ class QuotesViewModel @Inject constructor(
       viewModelScope
     ) { result ->
       when (result) {
-        is Result.Loading -> _loading.value = result.loading
+        is Result.Loading -> loading.value = result.loading
         is Result.Error -> Timber.e(result.error ?: "Error occur in loadTags")
         is Result.Success -> tagsList.value = result.data ?: emptyList()
       }
     }
   }
 
-  fun loadAllQuotes() = quotesUseCase.loadQuotesPaginated()
+  fun loadQuotes(tagName: String = "all") = if (tagName == "all") {
+    loadAllQuotes()
+  } else {
+    loadQuotesByTag(tagName)
+  }
+
+  private fun loadAllQuotes() = quotesUseCase.loadQuotesPaginated()
     .cachedIn(viewModelScope)
 
-  fun loadQuotesByTag(tag: String) = quotesByTagUseCase.loadQuotesByTagPaginated(tag)
+  private fun loadQuotesByTag(tag: String) = quotesByTagUseCase.loadQuotesByTagPaginated(tag)
     .cachedIn(viewModelScope)
 
   init {

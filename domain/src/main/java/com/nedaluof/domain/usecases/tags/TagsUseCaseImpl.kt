@@ -25,7 +25,13 @@ class TagsUseCaseImpl @Inject constructor(
       scope,
       apiToCall = { repository.getAllTags() },
       onLoading = { result(Result.Loading(it)) },
-      onSuccess = { result(Result.Success(mapper.fromList(it))) },
+      onSuccess = { responseData ->
+        val originalTagsList = mapper.fromList(responseData)
+        val newTagsList = originalTagsList.toMutableList().also {
+          it.add(0, TagModel("all", isSelected = true))
+        }
+        result(Result.Success(newTagsList))
+      },
       onError = { result(Result.Error(it.getErrorMessage())) }
     )
   }

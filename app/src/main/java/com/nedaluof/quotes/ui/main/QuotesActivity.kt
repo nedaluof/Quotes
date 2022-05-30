@@ -1,20 +1,18 @@
 package com.nedaluof.quotes.ui.main
 
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import com.google.android.material.chip.Chip
-import com.nedaluof.domain.model.tag.TagModel
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.nedaluof.quotes.R
 import com.nedaluof.quotes.databinding.ActivityMainBinding
 import com.nedaluof.quotes.ui.base.BaseActivity
 import com.nedaluof.quotes.ui.base.LoadStateFooterAdapter
+import com.nedaluof.quotes.ui.main.adapters.QuotesPagedAdapter
+import com.nedaluof.quotes.ui.main.adapters.TagsAdapter
 import com.nedaluof.quotes.ui.main.authorquotes.AuthorQuotesSheet
-import com.nedaluof.quotes.util.bindingadapter.ViewsBindingAdapters.generateChips
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -28,42 +26,56 @@ class QuotesActivity : BaseActivity<ActivityMainBinding>() {
   private val quotesViewModel by viewModels<QuotesViewModel>()
   override fun getViewModel() = quotesViewModel
 
+  private var tagsAdapter: TagsAdapter? = null
   private var quotesPagedAdapter: QuotesPagedAdapter? = null
   private var quotesJob: Job? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    initRecyclerView()
+    initTagsRecyclerView()
+    initQuotesRecyclerView()
     observeViewModel()
   }
 
-  private fun initRecyclerView() {
+  private fun initTagsRecyclerView() {
+    tagsAdapter = TagsAdapter { tagName ->
+      loadQuotes(tagName)
+    }
+    with(viewBinding.tagsRecyclerView) {
+      adapter = tagsAdapter
+      PagerSnapHelper().attachToRecyclerView(this)
+    }
+  }
+
+  private fun initQuotesRecyclerView() {
     quotesPagedAdapter =
       QuotesPagedAdapter { authorSlug -> openAuthorQuotes(authorSlug) }
 
     quotesPagedAdapter?.apply {
-      viewBinding.recyclerView.adapter = withLoadStateFooter(
-        footer = LoadStateFooterAdapter { this.retry() }
-      )
-      addLoadStateListener { loadState ->
-        viewBinding.message.isVisible = false
-        if (loadState.refresh is LoadState.Loading) {
-          //startShimmer()
-          viewBinding.progress.visibility = View.VISIBLE
-        } else {
-          //stopShimmer()
-          viewBinding.progress.visibility = View.GONE
-          viewBinding.message.isVisible = snapshot().isEmpty()
-          val error = when {
-            loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-            loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-            loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-            else -> null
-          }
-          error?.let {
-            if (snapshot().isEmpty()) {
-              viewBinding.message.isVisible = true
-              viewBinding.message.text = error.error.message.toString()
+      with(viewBinding) {
+        quotesRecyclerView.adapter = withLoadStateFooter(
+          footer = LoadStateFooterAdapter { this@apply.retry() }
+        )
+        addLoadStateListener { loadState ->
+          message.isVisible = false
+          if (loadState.refresh is LoadState.Loading) {
+            //startShimmer()
+            quotesProgress.isVisible = true
+          } else {
+            //stopShimmer()
+            quotesProgress.isVisible = false
+            message.isVisible = snapshot().isEmpty()
+            val error = when {
+              loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+              loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+              loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+              else -> null
+            }
+            error?.let {
+              if (snapshot().isEmpty()) {
+                message.isVisible = true
+                message.text = error.error.message.toString()
+              }
             }
           }
         }
@@ -72,45 +84,19 @@ class QuotesActivity : BaseActivity<ActivityMainBinding>() {
   }
 
   private fun observeViewModel() {
-    with(quotesViewModel) {
-
-      lifecycleScope.launch {
-        tagsList.collectLatest {
-            initTagsView(it)
-        }
-      }
-
-      quotesJob?.cancel()
-      quotesJob = lifecycleScope.launch {
-        loadAllQuotes().collectLatest { data ->
-          quotesPagedAdapter?.submitData(data)
-        }
-      }
+    lifecycleScope.launch {
+      quotesViewModel.tagsList.collectLatest(tagsAdapter!!::addItems)
     }
+    loadQuotes("all")
   }
 
-  private fun initTagsView(tags: List<TagModel>) {
-    val list = tags.map { it.name }
-    for (index in list.indices) {
-      val tagName = tags[index].name
-      val chip = Chip(this)
-      /* val paddingDp = TypedValue.applyDimension(
-           TypedValue.COMPLEX_UNIT_DIP, 10f,
-           context.resources.displayMetrics
-       ).toInt()
-       chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp)*/
-      chip.text = tagName
-      //chip.setCloseIconResource(R.drawable.ic_action_navigation_close);
-      //chip.setCloseIconVisible(true);
-      //Added click listener on close icon to remove tag from ChipGroup
-      chip.setOnClickListener {
-        Toast.makeText(this@QuotesActivity, tagName, Toast.LENGTH_SHORT).show()
+  private fun loadQuotes(tagName: String) {
+    quotesJob?.cancel()
+    quotesJob = lifecycleScope.launch {
+      quotesViewModel.loadQuotes(tagName).collectLatest { data ->
+        quotesPagedAdapter?.refresh()
+        quotesPagedAdapter?.submitData(data)
       }
-      /* chip.setOnCloseIconClickListener { v: View ->
-           tags.remove(tagName)
-           chipGroup.removeView(chip)
-       }*/
-      viewBinding.tagGroup.addView(chip)
     }
   }
 

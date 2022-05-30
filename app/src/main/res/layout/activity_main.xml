@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.nedaluof.quotes.ui.main.QuotesViewModel" />
@@ -13,29 +15,61 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/container"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/tag_group"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:minHeight="@dimen/_200sdp"
-            app:chipSpacing="@dimen/_2sdp" />
+            android:background="@color/indigo_light"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_6sdp"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tags_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:scrollbars="horizontal"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_tag" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/tags_progress"
+                style="@style/SpinKitView.ChasingDots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+                app:SpinKit_Color="@color/indigo_light" />
+        </FrameLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:background="@color/white"
             android:clickable="true"
             android:focusable="true">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+                android:id="@+id/quotes_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
@@ -46,15 +80,14 @@
                 android:id="@+id/message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="@string/no_label"
+                android:text="@string/no_quotes_label"
                 android:textColor="@color/red"
                 android:textSize="@dimen/_20sdp" />
 
             <com.github.ybq.android.spinkit.SpinKitView
-                android:id="@+id/progress"
+                android:id="@+id/quotes_progress"
                 style="@style/SpinKitView.Wave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

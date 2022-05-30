@@ -5,5 +5,6 @@ package com.nedaluof.domain.model.tag
  */
 data class TagModel(
   val name: String = "",
-  val quotesCount: String = ""
+  val quotesCount: String = "",
+  var isSelected: Boolean = false
 )
