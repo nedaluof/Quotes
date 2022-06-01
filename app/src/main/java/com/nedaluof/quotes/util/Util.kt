@@ -12,7 +12,7 @@ import kotlin.math.floor
  */
 fun BottomSheetDialogFragment.initBottomSheetBehavior(stateChanged: (Int) -> Unit) {
   // expand the bottom sheet
-  (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
+  (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
   // Set the callback to know the state of the bottom sheet
   val sheetBehavior = (this.dialog as BottomSheetDialog).behavior
   sheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {

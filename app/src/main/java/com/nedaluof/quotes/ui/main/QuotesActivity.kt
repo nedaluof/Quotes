@@ -38,9 +38,11 @@ class QuotesActivity : BaseActivity<ActivityMainBinding>() {
   }
 
   private fun initTagsRecyclerView() {
-    tagsAdapter = TagsAdapter { tagName ->
+    tagsAdapter = TagsAdapter { tagName , position ->
       loadQuotes(tagName)
+      viewBinding.tagsRecyclerView.scrollToPosition(position)
     }
+
     with(viewBinding.tagsRecyclerView) {
       adapter = tagsAdapter
       PagerSnapHelper().attachToRecyclerView(this)

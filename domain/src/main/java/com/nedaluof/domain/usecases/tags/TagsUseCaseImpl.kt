@@ -30,7 +30,7 @@ class TagsUseCaseImpl @Inject constructor(
         val newTagsList = originalTagsList.toMutableList().also {
           it.add(0, TagModel("all", isSelected = true))
         }
-        result(Result.Success(newTagsList))
+        result(Result.Success(newTagsList.sortedBy { it.name }))
       },
       onError = { result(Result.Error(it.getErrorMessage())) }
     )

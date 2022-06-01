@@ -42,9 +42,7 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
   }
 
   private fun initRecyclerView() {
-    quotesPagedAdapter = AuthorQuotesPagedAdapter()
-
-    quotesPagedAdapter?.apply {
+    quotesPagedAdapter = AuthorQuotesPagedAdapter().apply {
       viewBinding.recyclerView.adapter = withLoadStateFooter(
         footer = LoadStateFooterAdapter { this.retry() }
       )

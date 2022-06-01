@@ -34,7 +34,6 @@ class QuotesPagedAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(quoteObj: QuoteModel) {
             binding.run {
-                callback = ChipsClick { }
                 quote = quoteObj
                 executePendingBindings()
                 author.run {

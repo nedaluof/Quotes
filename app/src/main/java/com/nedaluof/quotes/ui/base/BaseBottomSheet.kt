@@ -42,7 +42,7 @@ abstract class BaseBottomSheet<B : ViewDataBinding> : BottomSheetDialogFragment(
     initBottomSheetBehavior { state ->
       when (state) {
         BottomSheetBehavior.STATE_HIDDEN -> dismiss()
-        BottomSheetBehavior.STATE_COLLAPSED -> dismiss()
+       // BottomSheetBehavior.STATE_COLLAPSED -> dismiss()
       }
     }
     return viewBinding.root

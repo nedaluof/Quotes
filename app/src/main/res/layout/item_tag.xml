@@ -7,7 +7,7 @@
 
         <variable
             name="tag"
-            type="String" />
+            type="com.nedaluof.domain.model.tag.TagModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -19,6 +19,8 @@
         android:layout_marginEnd="@dimen/_4sdp"
         android:layout_marginBottom="@dimen/_4sdp"
         app:cardCornerRadius="@dimen/_5sdp"
+        app:cardBackgroundColor="@{tag.isSelected ? @color/indigo : @color/white}"
+        tools:cardBackgroundColor="@color/white"
         app:cardElevation="@dimen/_4sdp">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -27,8 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_4sdp"
-            android:text="@{tag}"
-            android:textColor="@color/indigo"
+            android:text="@{tag.name}"
+            android:textColor="@{tag.isSelected ? @color/white : @color/indigo}"
+            tools:textColor="@color/indigo"
             android:textSize="@dimen/_13ssp"
             tools:text="Inspiration" />
 

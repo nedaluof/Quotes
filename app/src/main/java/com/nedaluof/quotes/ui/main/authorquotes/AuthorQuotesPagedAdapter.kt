@@ -32,10 +32,6 @@ class AuthorQuotesPagedAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(quoteObj: QuoteModel) {
             binding.run {
-                callback = object : ChipsClick {
-                    override fun onChipClick(tag: String) {
-                    }
-                }
                 quote = quoteObj
                 executePendingBindings()
                 author.isVisible = false

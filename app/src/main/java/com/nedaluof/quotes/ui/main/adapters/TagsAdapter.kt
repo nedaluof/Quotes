@@ -1,10 +1,10 @@
 @file:SuppressLint("NotifyDataSetChanged")
+
 package com.nedaluof.quotes.ui.main.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nedaluof.domain.model.tag.TagModel
@@ -16,7 +16,7 @@ import com.nedaluof.quotes.util.click
  * Created by NedaluOf on 5/30/2022.
  */
 class TagsAdapter(
-  private val onTagSelected: (String) -> Unit
+  private val onTagSelected: (String, Int) -> Unit
 ) : RecyclerView.Adapter<TagsAdapter.TagVH>() {
 
   private val tags = ArrayList<TagModel>()
@@ -37,7 +37,7 @@ class TagsAdapter(
   )
 
   override fun onBindViewHolder(holder: TagVH, position: Int) {
-    holder.bind(tags[position])
+    holder.bind(position)
   }
 
   override fun getItemCount() = tags.size
@@ -45,24 +45,12 @@ class TagsAdapter(
   inner class TagVH(
     private val binding: ItemTagBinding
   ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(tagModel: TagModel) {
+    fun bind(position: Int) {
       with(binding) {
-        tag = tagModel.name
-        val context = root.context
-        tagCard.setCardBackgroundColor(
-          ContextCompat.getColor(
-            context,
-            if (tagModel.isSelected) R.color.indigo_dark else R.color.white
-          )
-        )
-        tagName.setTextColor(
-          ContextCompat.getColor(
-            context,
-            if (tagModel.isSelected) R.color.white else R.color.indigo_dark
-          )
-        )
+        val tagModel = tags[position]
+        tag = tagModel
         root.click {
-          onTagSelected(tagModel.name)
+          onTagSelected(tagModel.name, position)
           tags.first { it.isSelected }.isSelected = false
           tagModel.isSelected = true
           notifyDataSetChanged()
