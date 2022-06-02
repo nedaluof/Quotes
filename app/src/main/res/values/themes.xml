@@ -14,10 +14,12 @@
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/quotes_font</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
+
     </style>
     <style name="Theme.Quotes.Splash" parent="Theme.MaterialComponents.NoActionBar"/>
 
-    <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
     </style>
 

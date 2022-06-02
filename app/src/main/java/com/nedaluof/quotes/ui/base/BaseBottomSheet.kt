@@ -10,9 +10,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.nedaluof.quotes.R
-import com.nedaluof.quotes.util.initBottomSheetBehavior
 
 /**
  * Created by NedaluOf on 8/10/2021.
@@ -38,13 +37,6 @@ abstract class BaseBottomSheet<B : ViewDataBinding> : BottomSheetDialogFragment(
     savedInstanceState: Bundle?
   ): View {
     viewBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-
-    initBottomSheetBehavior { state ->
-      when (state) {
-        BottomSheetBehavior.STATE_HIDDEN -> dismiss()
-       // BottomSheetBehavior.STATE_COLLAPSED -> dismiss()
-      }
-    }
     return viewBinding.root
   }
 
@@ -62,6 +54,15 @@ abstract class BaseBottomSheet<B : ViewDataBinding> : BottomSheetDialogFragment(
     this.show(manager, null)
   }
 
-  override fun getTheme() = R.style.AppBottomSheetDialogTheme
+  fun BottomSheetDialogFragment.initBottomSheetBehavior(stateChanged: (Int) -> Unit) {
+    (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+    val sheetBehavior = (this.dialog as BottomSheetDialog).behavior
+    sheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+      override fun onStateChanged(bottomSheet: View, newState: Int) {
+        stateChanged(newState)
+      }
 
+      override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+    })
+  }
 }

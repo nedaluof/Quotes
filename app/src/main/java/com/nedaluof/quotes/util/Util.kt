@@ -10,20 +10,6 @@ import kotlin.math.floor
 /**
  * Created by NedaluOf on 8/10/2021.
  */
-fun BottomSheetDialogFragment.initBottomSheetBehavior(stateChanged: (Int) -> Unit) {
-  // expand the bottom sheet
-  (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
-  // Set the callback to know the state of the bottom sheet
-  val sheetBehavior = (this.dialog as BottomSheetDialog).behavior
-  sheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-    override fun onStateChanged(bottomSheet: View, newState: Int) {
-      stateChanged.invoke(newState) // only the state needed in this use case
-    }
-
-    override fun onSlide(bottomSheet: View, slideOffset: Float) {}
-  })
-}
-
 fun View.click(doBlock: () -> Unit) {
   setOnClickListener { doBlock() }
 }

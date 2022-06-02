@@ -6,10 +6,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.nedaluof.quotes.R
 import com.nedaluof.quotes.databinding.SheetAuthorQuotesBinding
 import com.nedaluof.quotes.ui.base.BaseBottomSheet
 import com.nedaluof.quotes.ui.base.LoadStateFooterAdapter
+import com.nedaluof.quotes.util.click
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -31,14 +33,15 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    initBottomSheetBehavior { state ->
+      viewBinding.closeBtn.isVisible = when (state) {
+        BottomSheetBehavior.STATE_EXPANDED -> true
+        else -> false
+      }
+    }
     initRecyclerView()
     loadComingArguments()
-  }
-
-  private fun loadComingArguments() {
-    arguments?.getString(AUTHOR_SLUG_KEY)?.let { authorSlug ->
-      loadAuthorQuotes(authorSlug)
-    }
+    initClicks()
   }
 
   private fun initRecyclerView() {
@@ -68,6 +71,18 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
         }
       }
     }
+  }
+
+
+  private fun loadComingArguments() {
+    arguments?.getString(AUTHOR_SLUG_KEY)?.let { authorName ->
+      viewBinding.authorName.text = authorName
+      loadAuthorQuotes(authorName)
+    }
+  }
+
+  private fun initClicks() {
+    viewBinding.closeBtn.click(::dismiss)
   }
 
   private fun loadAuthorQuotes(authorSlug: String) {
