@@ -11,27 +11,61 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/inspirational_quote_lyt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_4sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="@dimen/_4sdp">
 
+        <!--❝-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_6sdp"
-                android:text="@{quote.content}"
-                android:textColor="@color/indigo"
-                android:textSize="@dimen/_15ssp"
-                tools:text="@string/app_name" />
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_margin="@dimen/_4sdp"
+                    android:fontFamily="monospace"
+                    android:text="❝"
+                    android:textColor="@color/indigo"
+                    android:textSize="@dimen/_18ssp"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:layout_weight="1"
+                    android:text="@{quote.content}"
+                    android:textColor="@color/indigo"
+                    android:textSize="@dimen/_15ssp"
+                    tools:text="app_name app_name app_ name app _name app _name app _name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:fontFamily="monospace"
+                    android:text="❞"
+                    android:textColor="@color/indigo"
+                    android:textSize="@dimen/_18ssp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/author"
@@ -40,9 +74,9 @@
                 android:background="@color/indigo_light"
                 android:clickable="true"
                 android:focusable="true"
-                android:fontFamily="casual"
                 android:padding="@dimen/_4sdp"
                 android:text="@{quote.author}"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp"
                 tools:text="NedaluOf Hasan" />

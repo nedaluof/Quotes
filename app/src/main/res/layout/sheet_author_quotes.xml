@@ -9,20 +9,23 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/sheet_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/indigo"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/author_name"
+                android:id="@+id/author_name_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="@dimen/_6sdp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15ssp"
-                tools:text="NedaluOF"
-                tools:textColor="@color/indigo" />
+                tools:text="NedaluOF" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/close_btn"
@@ -32,12 +35,19 @@
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_close"
-                android:tint="@color/white"
-                android:visibility="gone"
-                tools:tint="@color/indigo"
-                tools:visibility="visible" />
+                android:tint="@color/white" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/author_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_6sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp"
+            tools:text="NedaluOF"
+            tools:textColor="@color/indigo" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -71,9 +81,7 @@
                 android:layout_centerInParent="true"
                 app:SpinKit_Color="@color/indigo_light" />
 
-
         </RelativeLayout>
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.nedaluof.domain.model.quote.QuoteModel
 import com.nedaluof.quotes.R
 import com.nedaluof.quotes.databinding.ActivityMainBinding
 import com.nedaluof.quotes.ui.base.BaseActivity
@@ -13,6 +14,7 @@ import com.nedaluof.quotes.ui.base.LoadStateFooterAdapter
 import com.nedaluof.quotes.ui.main.adapters.QuotesPagedAdapter
 import com.nedaluof.quotes.ui.main.adapters.TagsAdapter
 import com.nedaluof.quotes.ui.main.authorquotes.AuthorQuotesSheet
+import com.nedaluof.quotes.ui.main.quoteviewer.QuoteViewerActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -38,7 +40,7 @@ class QuotesActivity : BaseActivity<ActivityMainBinding>() {
   }
 
   private fun initTagsRecyclerView() {
-    tagsAdapter = TagsAdapter { tagName , position ->
+    tagsAdapter = TagsAdapter { tagName, position ->
       loadQuotes(tagName)
       viewBinding.tagsRecyclerView.scrollToPosition(position)
     }
@@ -51,38 +53,36 @@ class QuotesActivity : BaseActivity<ActivityMainBinding>() {
 
   private fun initQuotesRecyclerView() {
     quotesPagedAdapter =
-      QuotesPagedAdapter { authorSlug -> openAuthorQuotes(authorSlug) }
-
-    quotesPagedAdapter?.apply {
-      with(viewBinding) {
-        quotesRecyclerView.adapter = withLoadStateFooter(
-          footer = LoadStateFooterAdapter { this@apply.retry() }
-        )
-        addLoadStateListener { loadState ->
-          message.isVisible = false
-          if (loadState.refresh is LoadState.Loading) {
-            //startShimmer()
-            quotesProgress.isVisible = true
-          } else {
-            //stopShimmer()
-            quotesProgress.isVisible = false
-            message.isVisible = snapshot().isEmpty()
-            val error = when {
-              loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-              loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-              loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-              else -> null
-            }
-            error?.let {
-              if (snapshot().isEmpty()) {
-                message.isVisible = true
-                message.text = error.error.message.toString()
+      QuotesPagedAdapter(::openQuoteViewer, ::openAuthorQuotes).apply {
+        with(viewBinding) {
+          quotesRecyclerView.adapter = withLoadStateFooter(
+            footer = LoadStateFooterAdapter { this@apply.retry() }
+          )
+          addLoadStateListener { loadState ->
+            message.isVisible = false
+            if (loadState.refresh is LoadState.Loading) {
+              //startShimmer()
+              quotesProgress.isVisible = true
+            } else {
+              //stopShimmer()
+              quotesProgress.isVisible = false
+              message.isVisible = snapshot().isEmpty()
+              val error = when {
+                loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                else -> null
+              }
+              error?.let {
+                if (snapshot().isEmpty()) {
+                  message.isVisible = true
+                  message.text = error.error.message.toString()
+                }
               }
             }
           }
         }
       }
-    }
   }
 
   private fun observeViewModel() {
@@ -105,6 +105,10 @@ class QuotesActivity : BaseActivity<ActivityMainBinding>() {
   private fun openAuthorQuotes(authorSlug: String) {
     AuthorQuotesSheet.buildInstance(authorSlug)
       .show(supportFragmentManager)
+  }
+
+  private fun openQuoteViewer(quoteModel: QuoteModel) {
+    startActivity(QuoteViewerActivity.getIntent(this, quoteModel))
   }
 
   override fun onDestroy() {

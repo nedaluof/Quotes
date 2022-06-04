@@ -34,9 +34,13 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     initBottomSheetBehavior { state ->
-      viewBinding.closeBtn.isVisible = when (state) {
+      val visibility = when (state) {
         BottomSheetBehavior.STATE_EXPANDED -> true
         else -> false
+      }
+      with(viewBinding) {
+        sheetBar.isVisible = visibility
+        authorName.isVisible = !visibility
       }
     }
     initRecyclerView()
@@ -73,11 +77,13 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
     }
   }
 
-
   private fun loadComingArguments() {
-    arguments?.getString(AUTHOR_SLUG_KEY)?.let { authorName ->
-      viewBinding.authorName.text = authorName
-      loadAuthorQuotes(authorName)
+    arguments?.getString(AUTHOR_SLUG_KEY)?.let { comingAuthorName ->
+      with(viewBinding) {
+        authorName.text = comingAuthorName
+        authorNameSecond.text = comingAuthorName
+      }
+      loadAuthorQuotes(comingAuthorName)
     }
   }
 

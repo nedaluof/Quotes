@@ -12,8 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Quotes"
+        android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,DataExtractionRules">
 
         <activity
@@ -30,6 +30,9 @@
         <activity
             android:name=".ui.main.QuotesActivity"
             android:exported="true" />
-    </application>
 
+        <activity
+            android:name=".ui.main.quoteviewer.QuoteViewerActivity"
+            android:exported="false" />
+    </application>
 </manifest>

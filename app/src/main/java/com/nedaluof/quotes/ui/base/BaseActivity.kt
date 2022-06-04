@@ -1,7 +1,9 @@
 package com.nedaluof.quotes.ui.base
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -30,5 +32,9 @@ abstract class BaseActivity<DB : ViewDataBinding> : AppCompatActivity() {
       setVariable(bindingVariable, viewModel ?: 0)
       executePendingBindings()
     }
+  }
+
+  fun toast(@StringRes stringId: Int) {
+    Toast.makeText(this, getString(stringId), Toast.LENGTH_SHORT).show()
   }
 }

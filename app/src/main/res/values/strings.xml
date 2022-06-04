@@ -4,4 +4,9 @@
     <string name="please_wait">Please Wait</string>
     <string name="retry_label">Try Again</string>
     <string name="no_quotes_label">There is no quotes in this tag.</string>
+    <string name="share_message_label">Quote shared over Quotes App.</string>
+    <string name="share_label">Share</string>
+    <string name="copy_message_label">Quote copied over Quotes App.</string>
+    <string name="copy_success_label">Quote copied successfully</string>
+    <string name="copy_label">Copy</string>
 </resources>
