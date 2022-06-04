@@ -1,8 +1,8 @@
 ![Quotes main image](https://github.com/nedaluof/Quotes/blob/master/screen_shots/Qotes%201024%20500.jpeg)
-# 󠀢❝ Quotes ❞
-Is a Quotes Application built to show simple apply of revamped android app [architecture](https://developer.android.com/topic/architecture)
+## 󠀢❝ Quotes ❞
+Is a Quote's Application built to show simple apply of revamped android app [architecture](https://developer.android.com/topic/architecture)
 <p align="center">
-<img src="https://github.com/nedaluof/Quotes/blob/master/screen_shots/mad_arch_overview.png?raw=true" width="500">
+<img src="https://github.com/nedaluof/Quotes/blob/master/screen_shots/mad_arch_overview.png?raw=true" width="350">
 </p>  
 
 ## Simple Tech stack 😁
