@@ -1,5 +1,7 @@
 package com.nedaluof.quotes.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -48,7 +50,8 @@ class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
 
     with(viewBinding.tagsRecyclerView) {
       adapter = tagsAdapter
-      layoutManager = LinearLayoutManager(this@QuotesActivity , LinearLayoutManager.HORIZONTAL , false)
+      layoutManager =
+        LinearLayoutManager(this@QuotesActivity, LinearLayoutManager.HORIZONTAL, false)
       PagerSnapHelper().attachToRecyclerView(this)
     }
   }
@@ -121,5 +124,10 @@ class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
       quotesJob?.cancel()
     }
     quotesJob = null
+  }
+
+  companion object {
+    fun getIntent(context: Context) =
+      Intent(context, QuotesActivity::class.java)
   }
 }
