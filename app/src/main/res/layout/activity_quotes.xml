@@ -40,14 +40,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.factor.bouncy.BouncyRecyclerView
                 android:id="@+id/tags_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:orientation="horizontal"
                 android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:allow_drag_reorder="false"
+                app:allow_item_swipe="false"
+                app:recyclerview_damping_ratio="DAMPING_RATIO_LOW_BOUNCY"
+                app:recyclerview_fling_animation_size=".7"
+                app:recyclerview_overscroll_animation_size=".7"
+                app:recyclerview_stiffness="STIFFNESS_LOW"
                 tools:itemCount="1"
                 tools:listitem="@layout/item_tag" />
 
@@ -70,12 +74,17 @@
             android:clickable="true"
             android:focusable="true">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.factor.bouncy.BouncyRecyclerView
                 android:id="@+id/quotes_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:allow_drag_reorder="false"
+                app:allow_item_swipe="false"
+                app:recyclerview_damping_ratio="DAMPING_RATIO_LOW_BOUNCY"
+                app:recyclerview_fling_animation_size=".7"
+                app:recyclerview_overscroll_animation_size=".7"
+                app:recyclerview_stiffness="STIFFNESS_LOW"
                 tools:listitem="@layout/item_quote" />
 
             <androidx.appcompat.widget.AppCompatTextView

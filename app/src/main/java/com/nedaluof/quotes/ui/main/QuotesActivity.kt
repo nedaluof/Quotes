@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.nedaluof.domain.model.quote.QuoteModel
 import com.nedaluof.quotes.R
@@ -47,6 +48,7 @@ class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
 
     with(viewBinding.tagsRecyclerView) {
       adapter = tagsAdapter
+      layoutManager = LinearLayoutManager(this@QuotesActivity , LinearLayoutManager.HORIZONTAL , false)
       PagerSnapHelper().attachToRecyclerView(this)
     }
   }
@@ -81,6 +83,7 @@ class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
               }
             }
           }
+          quotesRecyclerView.layoutManager = LinearLayoutManager(this@QuotesActivity)
         }
       }
   }

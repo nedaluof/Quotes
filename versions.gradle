@@ -12,15 +12,14 @@ ext.versions = [
         material        : '1.6.0',
         constraintlayout: '2.1.4',
         recyclerView    : '1.2.1',
-        spinKit         : '1.4.0',
-        coil            : '1.1.1',
+        bouncy          : '1.8',
         intuit          : '1.0.6',
         fragmentKtx     : '1.4.1',
         coreKtx         : '1.6.0',
         shimmer         : '0.5.0',
         //jet-pack
         lifecycle       : '2.4.1',
-        hilt            : '2.38.1',
+        hilt            : '2.40.1',
         paging          : '3.1.1',
         //preference
         preference      : '1.1.1',
@@ -28,6 +27,8 @@ ext.versions = [
         timber          : '4.7.1',
         //support java8+
         java8           : '1.1.5',
+        //dex
+        multidex        : '2.0.1',
 
         //kotlin
         kotlin          : '1.6.21',
