@@ -12,13 +12,11 @@
             android:id="@+id/sheet_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/indigo"
             android:orientation="horizontal"
-            android:visibility="gone"
             tools:visibility="visible">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/author_name_second"
+                android:id="@+id/author_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -38,16 +36,6 @@
                 android:tint="@color/white" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/author_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_6sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15ssp"
-            tools:text="NedaluOF"
-            tools:textColor="@color/indigo" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -73,13 +61,13 @@
                 android:textColor="@color/red"
                 android:textSize="@dimen/_20sdp" />
 
-            <com.github.ybq.android.spinkit.SpinKitView
+            <ProgressBar
                 android:id="@+id/progress"
-                style="@style/SpinKitView.Wave"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                app:SpinKit_Color="@color/indigo_light" />
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/indigo" />
 
         </RelativeLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>

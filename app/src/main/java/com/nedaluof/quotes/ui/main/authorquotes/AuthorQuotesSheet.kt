@@ -2,15 +2,19 @@ package com.nedaluof.quotes.ui.main.authorquotes
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.nedaluof.domain.model.quote.QuoteModel
 import com.nedaluof.quotes.R
 import com.nedaluof.quotes.databinding.SheetAuthorQuotesBinding
 import com.nedaluof.quotes.ui.base.BaseBottomSheet
 import com.nedaluof.quotes.ui.base.LoadStateFooterAdapter
+import com.nedaluof.quotes.ui.main.adapters.QuotesPagedAdapter
+import com.nedaluof.quotes.ui.main.quoteviewer.QuoteViewerActivity
 import com.nedaluof.quotes.util.click
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -28,19 +32,23 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
   private val authorViewModel by viewModels<AuthorQuotesViewModel>()
   override fun getViewModel() = authorViewModel
 
-  private var quotesPagedAdapter: AuthorQuotesPagedAdapter? = null
+  private var quotesPagedAdapter: QuotesPagedAdapter? = null
   private var quotesJob: Job? = null
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     initBottomSheetBehavior { state ->
-      val visibility = when (state) {
+      val expanded = when (state) {
         BottomSheetBehavior.STATE_EXPANDED -> true
         else -> false
       }
       with(viewBinding) {
-        sheetBar.isVisible = visibility
-        authorName.isVisible = !visibility
+        closeBtn.isVisible = expanded
+        sheetBar.setBackgroundColor(
+          ContextCompat.getColor(
+            requireActivity(), if (expanded) R.color.indigo else R.color.transparent
+          )
+        )
       }
     }
     initRecyclerView()
@@ -49,7 +57,10 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
   }
 
   private fun initRecyclerView() {
-    quotesPagedAdapter = AuthorQuotesPagedAdapter().apply {
+    quotesPagedAdapter = QuotesPagedAdapter(
+      onQuoteClicked = ::openQuoteViewer,
+      isAdapterForAuthorQuotes = true
+    ).apply {
       viewBinding.recyclerView.adapter = withLoadStateFooter(
         footer = LoadStateFooterAdapter { this.retry() }
       )
@@ -79,10 +90,7 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
 
   private fun loadComingArguments() {
     arguments?.getString(AUTHOR_SLUG_KEY)?.let { comingAuthorName ->
-      with(viewBinding) {
-        authorName.text = comingAuthorName
-        authorNameSecond.text = comingAuthorName
-      }
+      viewBinding.authorName.text = comingAuthorName
       loadAuthorQuotes(comingAuthorName)
     }
   }
@@ -100,6 +108,10 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
     }
   }
 
+  private fun openQuoteViewer(quoteModel: QuoteModel) {
+    startActivity(QuoteViewerActivity.getIntent(requireActivity(), quoteModel))
+  }
+
   override fun onDestroy() {
     super.onDestroy()
     quotesPagedAdapter = null
@@ -111,7 +123,6 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
 
   companion object {
     private const val AUTHOR_SLUG_KEY = "AUTHOR_SLUG_KEY"
-
     fun buildInstance(
       authorSlug: String
     ) = AuthorQuotesSheet().apply {
@@ -120,5 +131,4 @@ class AuthorQuotesSheet : BaseBottomSheet<SheetAuthorQuotesBinding>() {
       }
     }
   }
-
 }
