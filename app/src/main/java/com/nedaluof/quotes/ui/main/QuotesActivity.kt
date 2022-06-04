@@ -8,7 +8,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.nedaluof.domain.model.quote.QuoteModel
 import com.nedaluof.quotes.R
-import com.nedaluof.quotes.databinding.ActivityMainBinding
+import com.nedaluof.quotes.databinding.ActivityQuotesBinding
 import com.nedaluof.quotes.ui.base.BaseActivity
 import com.nedaluof.quotes.ui.base.LoadStateFooterAdapter
 import com.nedaluof.quotes.ui.main.adapters.QuotesPagedAdapter
@@ -21,10 +21,10 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class QuotesActivity : BaseActivity<ActivityMainBinding>() {
+class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
 
   override val bindingVariable = 0
-  override val layoutId = R.layout.activity_main
+  override val layoutId = R.layout.activity_quotes
   private val quotesViewModel by viewModels<QuotesViewModel>()
   override fun getViewModel() = quotesViewModel
 

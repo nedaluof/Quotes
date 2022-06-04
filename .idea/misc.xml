@@ -3,12 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Quotes/app/src/main/res/drawable-v24/bottom_rounded_bottom_sheet.xml" value="0.1" />
+        <entry key="..\:/Quotes/app/src/main/res/drawable/bottom_rounded_bottom_sheet.xml" value="0.141" />
         <entry key="..\:/Quotes/app/src/main/res/drawable/ic_inspiration.xml" value="0.1" />
         <entry key="..\:/Quotes/app/src/main/res/drawable/ic_motivation.xml" value="0.1" />
         <entry key="..\:/Quotes/app/src/main/res/drawable/ic_pokemon.xml" value="0.1" />
         <entry key="..\:/Quotes/app/src/main/res/drawable/rounded_bottom_sheet.xml" value="0.1" />
         <entry key="..\:/Quotes/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Quotes/app/src/main/res/layout/activity_quote_viewer.xml" value="0.33" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/activity_quotes.xml" value="0.22" />
         <entry key="..\:/Quotes/app/src/main/res/layout/fragment_author_quotes.xml" value="0.209375" />
         <entry key="..\:/Quotes/app/src/main/res/layout/fragment_character_quotes.xml" value="0.209375" />
         <entry key="..\:/Quotes/app/src/main/res/layout/fragment_inspirational.xml" value="0.20948410630536737" />

@@ -17,7 +17,7 @@ class QuotesPagedAdapter(
   val onQuoteClicked: (QuoteModel) -> Unit,
   val onAuthorNameClicked: (String) -> Unit,
 ) : PagingDataAdapter<QuoteModel, QuotesPagedAdapter.QuoteVH>(
-  InspirationalQuoteDiffCallback()
+  QuoteDiffCallback()
 ) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = QuoteVH(
@@ -45,7 +45,7 @@ class QuotesPagedAdapter(
     }
   }
 
-  private class InspirationalQuoteDiffCallback : DiffUtil.ItemCallback<QuoteModel>() {
+  private class QuoteDiffCallback : DiffUtil.ItemCallback<QuoteModel>() {
     override fun areItemsTheSame(oldItem: QuoteModel, newItem: QuoteModel) =
       oldItem.content == newItem.content
 
