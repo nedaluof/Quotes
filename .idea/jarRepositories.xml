@@ -36,5 +36,20 @@
       <option name="name" value="MavenLocal" />
       <option name="url" value="file:/$USER_HOME$/.m2/repository/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://mvnrepository.com/artifact/com.github.gundy/semver4j" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://jitpack.io/nedaluof/MiHawk" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://jitpack.io/artifact/com.github.nedaluof/MiHawk" />
+    </remote-repository>
   </component>
 </project>

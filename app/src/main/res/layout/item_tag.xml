@@ -30,6 +30,7 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/_4sdp"
             android:text="@{tag.name}"
+            android:background="@color/transparent"
             android:textColor="@{tag.isSelected ? @color/white : @color/indigo}"
             tools:textColor="@color/indigo"
             android:textSize="@dimen/_13ssp"

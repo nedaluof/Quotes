@@ -5,5 +5,5 @@ package com.nedaluof.data.datasource.local
  */
 interface PreferencesManager {
     fun setNightModeEnabled(enable: Boolean)
-    fun isNightModeEnabled(enabled: (Boolean?) -> Unit)
+    fun isNightModeEnabled():Boolean
 }

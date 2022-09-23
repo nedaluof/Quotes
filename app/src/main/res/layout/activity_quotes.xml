@@ -28,11 +28,25 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_6sdp"
+                android:layout_marginStart="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
                 android:text="@string/app_name"
-                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15ssp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/day_night_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_14sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:background="?selectableItemBackgroundBorderless"
+                tools:src="@drawable/ic_sun" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -70,7 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_8sdp"
-            android:background="@color/white"
             android:clickable="true"
             android:focusable="true">
 

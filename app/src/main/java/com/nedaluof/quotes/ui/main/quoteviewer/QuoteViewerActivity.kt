@@ -6,18 +6,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
 import com.nedaluof.domain.model.quote.QuoteModel
 import com.nedaluof.quotes.R
 import com.nedaluof.quotes.databinding.ActivityQuoteViewerBinding
 import com.nedaluof.quotes.ui.base.BaseActivity
+import com.nedaluof.quotes.ui.base.BaseViewModel
 import com.nedaluof.quotes.util.click
 
 class QuoteViewerActivity : BaseActivity<ActivityQuoteViewerBinding>() {
 
   override val bindingVariable = 0
   override val layoutId = R.layout.activity_quote_viewer
-  override fun getViewModel(): ViewModel? = null
+  override fun getViewModel(): BaseViewModel? = null
 
   private lateinit var comingQuoteModel: QuoteModel
 

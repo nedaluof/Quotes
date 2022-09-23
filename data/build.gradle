@@ -30,13 +30,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    kapt { correctErrorTypes = true }
 }
 
 dependencies {
     //Extensions
     api "androidx.core:core-ktx:$versions.coreKtx"
     //Preferences
-    //api 'com.github.nedaluof:MiHawk:1.0.1'
+    api "com.github.nedaluof:MiHawk:$versions.miHawk"
     // Hilt dependencies injection
     implementation "com.google.dagger:hilt-android:$versions.hilt"
     kapt "com.google.dagger:hilt-android-compiler:$versions.hilt"

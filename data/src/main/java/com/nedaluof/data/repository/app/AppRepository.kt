@@ -5,5 +5,5 @@ package com.nedaluof.data.repository.app
  */
 interface AppRepository {
     fun setNightModeEnabled(enable: Boolean)
-    fun isNightModeEnabled(enabled: (Boolean?) -> Unit)
+    fun isNightModeEnabled():Boolean
 }

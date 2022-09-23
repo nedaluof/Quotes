@@ -1,6 +1,5 @@
 package com.nedaluof.quotes.ui.main
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.nedaluof.domain.model.tag.TagModel
@@ -8,6 +7,7 @@ import com.nedaluof.domain.model.util.Result
 import com.nedaluof.domain.usecases.quotes.QuotesUseCase
 import com.nedaluof.domain.usecases.quotesbytag.QuotesByTagUseCase
 import com.nedaluof.domain.usecases.tags.TagsUseCase
+import com.nedaluof.quotes.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import timber.log.Timber
@@ -21,8 +21,7 @@ class QuotesViewModel @Inject constructor(
   private val tagsUseCase: TagsUseCase,
   private val quotesUseCase: QuotesUseCase,
   private val quotesByTagUseCase: QuotesByTagUseCase
-) : ViewModel() {
-
+) : BaseViewModel() {
 
   val loading = MutableStateFlow(false)
   val tagsList = MutableStateFlow<List<TagModel>>(emptyList())

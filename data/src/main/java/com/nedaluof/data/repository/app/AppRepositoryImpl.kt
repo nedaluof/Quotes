@@ -14,7 +14,7 @@ class AppRepositoryImpl @Inject constructor(
         preferencesManager.setNightModeEnabled(enable)
     }
 
-    override fun isNightModeEnabled(enabled: (Boolean?) -> Unit) {
-        preferencesManager.isNightModeEnabled(enabled)
+    override fun isNightModeEnabled():Boolean {
+        return preferencesManager.isNightModeEnabled()
     }
 }

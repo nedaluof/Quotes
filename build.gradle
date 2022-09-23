@@ -2,13 +2,16 @@ buildscript {
     apply from: "$rootDir/versions.gradle"
     repositories {
         google()
-        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://mvnrepository.com/artifact/com.github.gundy/semver4j'
+        }
         mavenCentral()
         //noinspection JcenterRepositoryObsolete
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.0'
+        classpath 'com.android.tools.build:gradle:7.1.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt"
     }
@@ -18,10 +21,13 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://jitpack.io" }
+        maven {
+            url 'https://mvnrepository.com/artifact/com.github.gundy/semver4j'
+        }
         //noinspection JcenterRepositoryObsolete
         jcenter()
         mavenLocal()
+        maven { url "https://jitpack.io" }
     }
 }
 

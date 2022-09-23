@@ -4,18 +4,20 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.lifecycle.ViewModel
 import com.nedaluof.quotes.R
 import com.nedaluof.quotes.databinding.ActivitySplashBinding
 import com.nedaluof.quotes.ui.base.BaseActivity
+import com.nedaluof.quotes.ui.base.BaseViewModel
 import com.nedaluof.quotes.ui.main.QuotesActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("CustomSplashScreen")
+@AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
   override val bindingVariable = 0
   override val layoutId = R.layout.activity_splash
-  override fun getViewModel(): ViewModel? = null
+  override fun getViewModel(): BaseViewModel? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

@@ -10,6 +10,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.nedaluof.domain.model.quote.QuoteModel
+import com.nedaluof.quotes.BR
 import com.nedaluof.quotes.R
 import com.nedaluof.quotes.databinding.ActivityQuotesBinding
 import com.nedaluof.quotes.ui.base.BaseActivity
@@ -18,6 +19,7 @@ import com.nedaluof.quotes.ui.main.adapters.QuotesPagedAdapter
 import com.nedaluof.quotes.ui.main.adapters.TagsAdapter
 import com.nedaluof.quotes.ui.main.authorquotes.AuthorQuotesSheet
 import com.nedaluof.quotes.ui.main.quoteviewer.QuoteViewerActivity
+import com.nedaluof.quotes.util.click
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -26,7 +28,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
 
-  override val bindingVariable = 0
+  override val bindingVariable = BR.viewModel
   override val layoutId = R.layout.activity_quotes
   private val quotesViewModel by viewModels<QuotesViewModel>()
   override fun getViewModel() = quotesViewModel
@@ -37,9 +39,19 @@ class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    initClicks()
     initTagsRecyclerView()
     initQuotesRecyclerView()
     observeViewModel()
+  }
+
+  private fun initClicks() {
+    with(viewBinding.dayNightBtn) {
+      setDayNightButton(this)
+      click {
+        changeDayNightMode()
+      }
+    }
   }
 
   private fun initTagsRecyclerView() {
@@ -92,9 +104,7 @@ class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
   }
 
   private fun observeViewModel() {
-    lifecycleScope.launch {
-      quotesViewModel.tagsList.collectLatest(tagsAdapter!!::addItems)
-    }
+    quotesViewModel.tagsList.collectFlow(tagsAdapter!!::addItems)
     loadQuotes("all")
   }
 

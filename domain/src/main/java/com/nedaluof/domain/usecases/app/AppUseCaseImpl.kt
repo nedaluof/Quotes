@@ -14,9 +14,7 @@ class AppUseCaseImpl @Inject constructor(
         repository.setNightModeEnabled(enable)
     }
 
-    override fun isNightModeEnabled(enabled: (Boolean) -> Unit) {
-        repository.isNightModeEnabled { isEnabled ->
-            enabled(isEnabled ?: false)
-        }
+    override fun isNightModeEnabled():Boolean {
+        return repository.isNightModeEnabled()
     }
 }

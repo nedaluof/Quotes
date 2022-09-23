@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.nedaluof.quotes.R
 
 /**
  * Created by NedaluOf on 8/10/2021.
@@ -65,4 +66,6 @@ abstract class BaseBottomSheet<B : ViewDataBinding> : BottomSheetDialogFragment(
       override fun onSlide(bottomSheet: View, slideOffset: Float) {}
     })
   }
+
+  override fun getTheme() = R.style.BottomSheetDialogTheme
 }
