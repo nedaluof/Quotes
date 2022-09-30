@@ -78,11 +78,9 @@ class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
           addLoadStateListener { loadState ->
             message.isVisible = false
             if (loadState.refresh is LoadState.Loading) {
-              //startShimmer()
-              quotesProgress.isVisible = true
+              handleQuotesShimmer(true)
             } else {
-              //stopShimmer()
-              quotesProgress.isVisible = false
+              handleQuotesShimmer(false)
               message.isVisible = snapshot().isEmpty()
               val error = when {
                 loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
@@ -104,7 +102,10 @@ class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
   }
 
   private fun observeViewModel() {
-    quotesViewModel.tagsList.collectFlow(tagsAdapter!!::addItems)
+    with(quotesViewModel) {
+      tagsList.collectFlow(tagsAdapter!!::addItems)
+      tagsProgress.collectFlow(::handleTagsShimmer)
+    }
     loadQuotes("all")
   }
 
@@ -125,6 +126,32 @@ class QuotesActivity : BaseActivity<ActivityQuotesBinding>() {
 
   private fun openQuoteViewer(quoteModel: QuoteModel) {
     startActivity(QuoteViewerActivity.getIntent(this, quoteModel))
+  }
+
+  private fun handleTagsShimmer(
+    show: Boolean
+  ) {
+    with(viewBinding.tagsShimmer.shimmerContainer) {
+      if (show) {
+        startShimmer()
+      } else {
+        stopShimmer()
+      }
+      isVisible = show
+    }
+  }
+
+  private fun handleQuotesShimmer(
+    show: Boolean
+  ) {
+    with(viewBinding.quotesShimmer.shimmerContainer) {
+      if (show) {
+        startShimmer()
+      } else {
+        stopShimmer()
+      }
+      isVisible = show
+    }
   }
 
   override fun onDestroy() {

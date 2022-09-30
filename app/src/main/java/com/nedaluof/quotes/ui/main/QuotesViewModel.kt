@@ -23,7 +23,7 @@ class QuotesViewModel @Inject constructor(
   private val quotesByTagUseCase: QuotesByTagUseCase
 ) : BaseViewModel() {
 
-  val loading = MutableStateFlow(false)
+  val tagsProgress = MutableStateFlow(false)
   val tagsList = MutableStateFlow<List<TagModel>>(emptyList())
 
   private fun loadTags() {
@@ -31,7 +31,7 @@ class QuotesViewModel @Inject constructor(
       viewModelScope
     ) { result ->
       when (result) {
-        is Result.Loading -> loading.value = result.loading
+        is Result.Loading -> tagsProgress.value = result.loading
         is Result.Error -> Timber.e(result.error ?: "Error occur in loadTags")
         is Result.Success -> tagsList.value = result.data ?: emptyList()
       }

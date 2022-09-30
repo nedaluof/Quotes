@@ -53,7 +53,10 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+            <include
+                android:id="@+id/tags_shimmer"
+                layout="@layout/activity_quotes_shimmer_tags"
+                tools:visibility="visible" />
             <com.factor.bouncy.BouncyRecyclerView
                 android:id="@+id/tags_recycler_view"
                 android:layout_width="match_parent"
@@ -69,15 +72,6 @@
                 tools:itemCount="1"
                 tools:listitem="@layout/item_tag" />
 
-            <ProgressBar
-                android:id="@+id/tags_progress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:indeterminateTint="@color/indigo"
-                android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
-                tools:visibility="visible" />
-
         </FrameLayout>
 
         <RelativeLayout
@@ -86,6 +80,11 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:clickable="true"
             android:focusable="true">
+
+            <include
+                android:id="@+id/quotes_shimmer"
+                layout="@layout/activity_quotes_shimmer_quotes"
+                tools:visibility="visible" />
 
             <com.factor.bouncy.BouncyRecyclerView
                 android:id="@+id/quotes_recycler_view"
@@ -107,16 +106,8 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:text="@string/no_quotes_label"
-                android:textColor="@color/red"
+                android:textColor="@color/indigo"
                 android:textSize="@dimen/_20sdp" />
-
-            <ProgressBar
-                android:id="@+id/quotes_progress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:indeterminateTint="@color/indigo" />
 
         </RelativeLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>

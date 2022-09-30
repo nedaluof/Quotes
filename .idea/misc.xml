@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Quotes/app/src/main/res/drawable-v24/bottom_rounded_bottom_sheet.xml" value="0.1" />
         <entry key="..\:/Quotes/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Quotes/app/src/main/res/drawable/bg_rounded.xml" value="0.1525" />
         <entry key="..\:/Quotes/app/src/main/res/drawable/bg_top_rounded_bottom_sheet.xml" value="0.1" />
         <entry key="..\:/Quotes/app/src/main/res/drawable/bottom_rounded_bottom_sheet.xml" value="0.141" />
         <entry key="..\:/Quotes/app/src/main/res/drawable/ic_inspiration.xml" value="0.1" />
@@ -17,6 +18,9 @@
         <entry key="..\:/Quotes/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Quotes/app/src/main/res/layout/activity_quote_viewer.xml" value="0.33" />
         <entry key="..\:/Quotes/app/src/main/res/layout/activity_quotes.xml" value="0.22" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/activity_quotes_shimmer.xml" value="0.320695102685624" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/activity_quotes_shimmer_quotes.xml" value="0.209375" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/activity_quotes_shimmer_tags.xml" value="0.209375" />
         <entry key="..\:/Quotes/app/src/main/res/layout/activity_splash.xml" value="0.209375" />
         <entry key="..\:/Quotes/app/src/main/res/layout/fragment_author_quotes.xml" value="0.209375" />
         <entry key="..\:/Quotes/app/src/main/res/layout/fragment_character_quotes.xml" value="0.209375" />
@@ -25,7 +29,10 @@
         <entry key="..\:/Quotes/app/src/main/res/layout/item_inspirational_quote.xml" value="0.33" />
         <entry key="..\:/Quotes/app/src/main/res/layout/item_load_state.xml" value="0.209375" />
         <entry key="..\:/Quotes/app/src/main/res/layout/item_quote.xml" value="0.4" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/item_quote_Shimmer.xml" value="0.209375" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/item_quote_shimmer.xml" value="0.33" />
         <entry key="..\:/Quotes/app/src/main/res/layout/item_tag.xml" value="0.9" />
+        <entry key="..\:/Quotes/app/src/main/res/layout/item_tag_shimmer.xml" value="0.75" />
         <entry key="..\:/Quotes/app/src/main/res/layout/item_test.xml" value="0.209375" />
         <entry key="..\:/Quotes/app/src/main/res/layout/sheet_author_quotes.xml" value="0.22" />
       </map>

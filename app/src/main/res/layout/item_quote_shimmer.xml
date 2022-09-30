@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_4sdp">
+
+        <!--❝-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_margin="@dimen/_4sdp"
+                    android:fontFamily="monospace"
+                    android:text="❝"
+                    android:textColor="@color/light_gray"
+                    android:textSize="@dimen/_18ssp"
+                    tools:ignore="HardcodedText" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rounded"
+                    android:textColor="@color/light_gray"
+                    android:textSize="@dimen/_15ssp"
+                    tools:text="app_name app_name app_ name app _name app _name app _name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:fontFamily="monospace"
+                    android:text="❞"
+                    android:textColor="@color/light_gray"
+                    android:textSize="@dimen/_18ssp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/author"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/light_gray"
+                android:focusable="true"
+                android:padding="@dimen/_4sdp"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
