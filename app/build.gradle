@@ -26,6 +26,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def buildType = variant.buildType.name
+            def version = variant.versionName
+            def formattedDate = new Date().format("dd-MM-yyyy hh-mm a")
+            def newApkName = "Quotes($buildType-$version-$formattedDate).apk"
+            output.outputFileName = new File(buildType == "debug" ? "debug" : "release", newApkName)
+        }
+    }
+
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8

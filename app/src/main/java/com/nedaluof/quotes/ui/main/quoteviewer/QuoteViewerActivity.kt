@@ -12,7 +12,9 @@ import com.nedaluof.quotes.databinding.ActivityQuoteViewerBinding
 import com.nedaluof.quotes.ui.base.BaseActivity
 import com.nedaluof.quotes.ui.base.BaseViewModel
 import com.nedaluof.quotes.util.click
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class QuoteViewerActivity : BaseActivity<ActivityQuoteViewerBinding>() {
 
   override val bindingVariable = 0
@@ -20,15 +22,13 @@ class QuoteViewerActivity : BaseActivity<ActivityQuoteViewerBinding>() {
   override fun getViewModel(): BaseViewModel? = null
 
   private lateinit var comingQuoteModel: QuoteModel
-
-  private val preparedQuote: String
-    get() = """
+  private val preparedQuote : String
+    get() =  """
       ❝
         ${comingQuoteModel.content}
                                      ❞
         - ${comingQuoteModel.author}
       """.trimIndent()
-
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -37,8 +37,10 @@ class QuoteViewerActivity : BaseActivity<ActivityQuoteViewerBinding>() {
 
   private fun loadComingQuote() {
     intent?.let {
-      comingQuoteModel = it.getParcelableExtra(QUOTE_MODEL_KEY)!!
-      loadQuoteDataToView()
+      it.getParcelableExtra<QuoteModel>(QUOTE_MODEL_KEY)?.let { model ->
+        comingQuoteModel = model
+        loadQuoteDataToView()
+      }
     }
   }
 
@@ -73,8 +75,7 @@ class QuoteViewerActivity : BaseActivity<ActivityQuoteViewerBinding>() {
     val clipboard = ContextCompat.getSystemService(this, ClipboardManager::class.java)
     clipboard?.setPrimaryClip(
       ClipData.newPlainText(
-        getString(R.string.copy_message_label),
-        preparedQuote
+        getString(R.string.copy_message_label), preparedQuote
       )
     )
     toast(R.string.copy_success_label)
